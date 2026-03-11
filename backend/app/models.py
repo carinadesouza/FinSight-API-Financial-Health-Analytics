@@ -1,15 +1,25 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from typing import Dict, List
 
-# Input data model for financial info
 class FinancialData(BaseModel):
-    income: float  # monthly income
-    expenses: Dict[str, float]  # e.g., {"rent": 1000, "food": 400}
-    debts: float  # total debts
-    savings: float  # total savings
-    investments: Dict[str, float] = {}  # optional, e.g., {"stocks": 2000}
+    income: float
+    expenses: Dict[str, float]   # now accepts any category keys
+    debts: float
+    savings: float
+    investments: Dict[str, float] = {}
 
-# Output data model for API response
+    @validator("income")
+    def income_positive(cls, v):
+        if v < 0:
+            raise ValueError("Income must be non-negative")
+        return v
+
+    @validator("debts", "savings")
+    def non_negative(cls, v):
+        if v < 0:
+            raise ValueError("Value must be non-negative")
+        return v
+
 class FinancialHealthResponse(BaseModel):
     financial_health_score: float
     savings_ratio: float
