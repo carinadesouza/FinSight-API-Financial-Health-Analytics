@@ -1,4 +1,4 @@
-# 🌸 FinSight — Personal Financial Intelligence
+# FinSight Personal Financial Intelligence
 
 A full-stack financial health analysis app built with **FastAPI** (Python) and **Next.js** (TypeScript). Enter your income, expenses, debts and savings to get a personalised financial health score, ratio analysis, expense breakdown, and a **6-month savings forecast powered by machine learning**.
 
