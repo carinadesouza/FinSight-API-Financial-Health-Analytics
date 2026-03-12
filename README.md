@@ -255,10 +255,3 @@ History: 100, 80, 150, 50, 120, 90
 1. Connect GitHub repo to Vercel
 2. Root Directory: `frontend`
 3. Add environment variable: `NEXT_PUBLIC_API_URL = https://your-api.onrender.com`
-
----
-
-## ⚠️ Known Limitations
-
-- **In-memory database** — all data resets when the server restarts. A future version will use PostgreSQL for persistent storage.
-- **Render free tier** — spins down after 15 minutes of inactivity. Use [UptimeRobot](https://uptimerobot.com) to ping every 5 minutes and keep it awake.
