@@ -4,7 +4,7 @@ import { submitFinancialData, predictSavings } from "../utils/api";
 
 type ExpenseKey = "rent" | "food" | "utilities" | "transport" | "entertainment" | "healthcare";
 
-// ─── SVG Line Chart ────────────────────────────────────────────────────────────
+// SVG Line Chart
 function SavingsChart({ past, predicted }: { past: number[]; predicted: number[] }) {
   const allValues = [...past, ...predicted];
   const max = Math.max(...allValues) * 1.15 || 1;
@@ -61,7 +61,7 @@ function SavingsChart({ past, predicted }: { past: number[]; predicted: number[]
   );
 }
 
-// ─── Horizontal Bar ───────────────────────────────────────────────────────────
+// Horizontal Bar
 function Bar({ pct, color }: { pct: number; color: string }) {
   return (
     <div style={{ height: "6px", background: "#f1f5f9", borderRadius: "4px", overflow: "hidden" }}>
@@ -70,7 +70,7 @@ function Bar({ pct, color }: { pct: number; color: string }) {
   );
 }
 
-// ─── Score Ring ───────────────────────────────────────────────────────────────
+// Score Ring
 function ScoreRing({ score }: { score: number }) {
   const r = 54; const circ = 2 * Math.PI * r;
   const color = score >= 70 ? "#10b981" : score >= 40 ? "#f59e0b" : "#ef4444";
@@ -87,7 +87,7 @@ function ScoreRing({ score }: { score: number }) {
   );
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
+// Main 
 export default function Dashboard() {
   const [userName, setUserName] = useState("");
   const [started, setStarted] = useState(false);
@@ -117,7 +117,7 @@ export default function Dashboard() {
     finally { setLoadingAnalysis(false); }
   };
 
-  // ─── Derived numbers ──────────────────────────────────────────────────────
+  // Derived numbers
   const totalExp = Object.values(expenses).reduce((a, b) => a + b, 0);
   const monthlyCashFlow = income - totalExp;
   const netWorth = savings - debts;
@@ -125,7 +125,7 @@ export default function Dashboard() {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const nowMonth = new Date().getMonth();
 
-  // ─── Colours ──────────────────────────────────────────────────────────────
+  // Colours
   const C = {
     bg: "#f8fafc",
     surface: "#ffffff",
@@ -189,7 +189,7 @@ export default function Dashboard() {
     { key: "healthcare", label: "Healthcare", icon: "🏥" },
   ];
 
-  // ─── LANDING ──────────────────────────────────────────────────────────────
+  // LANDING
   if (!started) return (
     <div style={{ minHeight: "100vh", background: C.bg, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "system-ui, sans-serif", padding: "1rem" }}>
       <div style={{ ...card, maxWidth: "440px", width: "100%", padding: "2.5rem" }}>
@@ -212,7 +212,7 @@ export default function Dashboard() {
         <label style={lbl}>Your Name</label>
         <input
           style={{ ...inp, marginBottom: "1rem" }}
-          placeholder="e.g. Alex Johnson"
+          placeholder="e.g. Name"
           value={userName}
           onChange={e => setUserName(e.target.value)}
         />
@@ -227,7 +227,7 @@ export default function Dashboard() {
     </div>
   );
 
-  // ─── STEPS ────────────────────────────────────────────────────────────────
+  // STEPS
   const stepLabels = ["Income", "Expenses", "Debt & Savings", "History"];
 
   return (
@@ -243,7 +243,7 @@ export default function Dashboard() {
 
       <div style={{ maxWidth: "760px", margin: "0 auto", padding: "2rem 1rem" }}>
 
-        {/* ── INPUT FORM ── */}
+        {/* INPUT FORM */}
         {!result && (
           <>
             {/* Progress */}
@@ -424,7 +424,7 @@ export default function Dashboard() {
           </>
         )}
 
-        {/* ── RESULTS ── */}
+        {/* RESULTS */}
         {result && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
 
