@@ -3,10 +3,8 @@
 A full-stack financial health analysis app built with **FastAPI** (Python) and **Next.js** (TypeScript). Enter your income, expenses, debts and savings to get a personalised financial health score, ratio analysis, expense breakdown, and a **6-month savings forecast powered by machine learning**.
 
 ---
-
 ## 🔗 Live Demo
-
-- **Frontend:** https://fin-sight-api-financial-health-anal.vercel.app[](https://your-app.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app))
+[🚀 Click here to try the live demo](https://fin-sight-api-financial-health-anal.vercel.app)
 
 ## ✨ Features
 
