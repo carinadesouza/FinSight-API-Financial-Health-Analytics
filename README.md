@@ -1,22 +1,54 @@
-# FinSight Personal Financial Intelligence
+# FinSight — Personal Financial Intelligence
 
 A full-stack financial health analysis app built with **FastAPI** (Python) and **Next.js** (TypeScript). Enter your income, expenses, debts and savings to get a personalised financial health score, ratio analysis, expense breakdown, and a **6-month savings forecast powered by machine learning**.
 
 ---
+
 ## 🔗 Live Demo
+
 [🚀 Click here to try the live demo](https://fin-sight-api-financial-health-anal.vercel.app)
+
+---
 
 ## ✨ Features
 
 - **Financial Health Score** — 0 to 100 score calculated from your savings, debt, and expense ratios
-- **Expense Breakdown** — 6 categories with visual progr]ss bars and % of income
+- **Expense Breakdown** — 6 categories with visual progress bars and % of income
 - **Net Worth Tracker** — real-time savings minus debts calculation
 - **Monthly Cash Flow** — income minus total expenses
 - **Emergency Fund Check** — tells you if you have 3–6 months of income saved
 - **Debt Payoff Estimate** — calculates how many months to pay off debt at current cash flow
 - **Savings Forecast Chart** — ML-powered 6-month prediction using linear regression
 - **Personalised Recommendations** — actionable advice based on your ratios
+- **Save Report** — export your full analysis as a JSON file or print/save as PDF
+- **Fully Responsive** — optimised for mobile, tablet, and desktop screens
 - **No signup required** — just enter your name and start
+
+---
+
+## 💾 Save & Export
+
+Once your analysis is complete, tap the **Save Report** button (available in the header and at the bottom of results) to choose your export format:
+
+| Format | Description |
+|--------|-------------|
+| 📄 **Download JSON** | Exports all input data, ratios, health score, and forecast as a structured `.json` file — named `finsight-[name]-[date].json` |
+| 🖨️ **Print / Save as PDF** | Opens the browser print dialog — choose "Save as PDF" for a clean, print-optimised version of your report |
+
+> Your data never leaves your device. There is no account, server storage, or tracking.
+
+---
+
+## 📱 Responsive Design
+
+FinSight is fully responsive across all screen sizes:
+
+| Breakpoint | Layout behaviour |
+|------------|-----------------|
+| **Desktop** (>760px) | Two-column score + stats, 6-column forecast grid, 3-column debt cards |
+| **Tablet** (600–760px) | Stacked score ring + stats, 2-column expense inputs, 3-column forecast |
+| **Mobile** (≤600px) | Single-column layout throughout, horizontally scrollable step progress bar |
+| **Small mobile** (≤400px) | 2-column forecast grid, single-column history inputs |
 
 ---
 
@@ -46,11 +78,11 @@ A full-stack financial health analysis app built with **FastAPI** (Python) and *
 | **Vercel** | Frontend hosting |
 | **Render** | Backend hosting |
 | **GitHub** | Version control |
- 
+
 ---
- 
+
 ## 📁 Project Structure
- 
+
 ```
 finsight-api/
 ├── backend/
@@ -79,7 +111,7 @@ finsight-api/
     ├── eslint.config.mjs
     └── package.json
 ```
- 
+
 ---
 
 ## 🚀 Running Locally
@@ -108,7 +140,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs at: `http://localhost:8000`
+Backend runs at: `http://localhost:8000`  
 API docs at: `http://localhost:8000/docs`
 
 ### Frontend Setup
@@ -209,6 +241,8 @@ score = clamped between 0 and 100
 - Debt ratio > 40% of income
 - Savings ratio < 20% of income
 - Expense ratio > 60% of income
+
+> ⚠️ **Known ratio bug:** The API currently returns `savings_ratio` as total savings ÷ monthly income and `debt_ratio` as total debt ÷ monthly income, producing inflated values (e.g. 218% savings rate, 155% debt ratio). The correct formulas are: savings ratio = monthly savings ÷ monthly income, and debt ratio = total debt ÷ annual income. This affects the displayed health score but not the forecast or expense breakdown. Fix is in `analytics.py`.
 
 ---
 
