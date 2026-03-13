@@ -6,7 +6,7 @@ A full-stack financial health analysis app built with **FastAPI** (Python) and *
 
 ## 🔗 Live Demo
 
-- **Frontend:** [https://your-app.vercel.app[](https://your-app.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app))
+- **Frontend:** [Click for demo[](https://your-app.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app))
 
 ## ✨ Features
 
