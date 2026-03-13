@@ -6,12 +6,12 @@ A full-stack financial health analysis app built with **FastAPI** (Python) and *
 
 ## 🔗 Live Demo
 
-- **Frontend:** [Click for demo[](https://your-app.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app))
+- **Frontend:** [Click for demo][](https://your-app.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app))
 
 ## ✨ Features
 
 - **Financial Health Score** — 0 to 100 score calculated from your savings, debt, and expense ratios
-- **Expense Breakdown** — 6 categories with visual progress bars and % of income
+- **Expense Breakdown** — 6 categories with visual progr]ss bars and % of income
 - **Net Worth Tracker** — real-time savings minus debts calculation
 - **Monthly Cash Flow** — income minus total expenses
 - **Emergency Fund Check** — tells you if you have 3–6 months of income saved
