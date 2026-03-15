@@ -1,180 +1,126 @@
 # FinSight — Personal Financial Intelligence
 
-A full-stack financial health analysis app built with **FastAPI** (Python) and **Next.js** (TypeScript). Enter your income, expenses, debts and savings to get a personalised financial health score, ratio analysis, expense breakdown, and a **6-month savings forecast powered by machine learning**.
+A full-stack app that gives you a clear picture of your finances. Enter your income, expenses, debts, and savings — FinSight scores your financial health, breaks down your spending, and predicts your savings for the next 6 months using machine learning.
+
+No account needed. Just open it and start.
+
+**Live:** [fin-sight-api-financial-health-anal.vercel.app](https://fin-sight-api-financial-health-anal.vercel.app)  
+**API docs:** [finsight-api-financial-health-analytics.onrender.com/docs](https://finsight-api-financial-health-analytics.onrender.com/docs)
+
+> The backend runs on Render's free tier and may take 30–60 seconds to wake up on the first request.
 
 ---
 
-## 🔗 Live Demo
+## What it does
 
-[🚀 Click here to try the live demo](https://fin-sight-api-financial-health-anal.vercel.app)
+Walk through a 4-step form — income, expenses, debts & savings, savings history — and get back a full financial breakdown:
 
----
-
-## ✨ Features
-
-- **Financial Health Score** — 0 to 100 score calculated from your savings, debt, and expense ratios
-- **Expense Breakdown** — 6 categories with visual progress bars and % of income
-- **Net Worth Tracker** — real-time savings minus debts calculation
-- **Monthly Cash Flow** — income minus total expenses
-- **Emergency Fund Check** — tells you if you have 3–6 months of income saved
-- **Debt Payoff Estimate** — calculates how many months to pay off debt at current cash flow
-- **Savings Forecast Chart** — ML-powered 6-month prediction using linear regression
-- **Personalised Recommendations** — actionable advice based on your ratios
-- **Save Report** — export your full analysis as a JSON file or print/save as PDF
-- **Fully Responsive** — optimised for mobile, tablet, and desktop screens
-- **No signup required** — just enter your name and start
+- **Health score (0–100)** based on your savings, debt, and expense ratios
+- **Monthly cash flow** — what's left after all expenses
+- **Net worth** — savings minus total debts
+- **Emergency fund check** — whether you have 3–6 months of income saved
+- **Debt payoff estimate** — how many months to clear your debt at the current rate
+- **Expense breakdown** — 6 categories with progress bars showing % of income
+- **6-month savings forecast** — linear regression model predicts where your savings are headed
+- **Personalised recommendations** — triggered automatically when your ratios fall outside healthy ranges
 
 ---
 
-## 💾 Save & Export
+## Saving your report
 
-Once your analysis is complete, tap the **Save Report** button (available in the header and at the bottom of results) to choose your export format:
+Once the analysis is done, hit **Save Report** in the header or at the bottom of the results page.
 
-| Format | Description |
-|--------|-------------|
-| 📄 **Download JSON** | Exports all input data, ratios, health score, and forecast as a structured `.json` file — named `finsight-[name]-[date].json` |
-| 🖨️ **Print / Save as PDF** | Opens the browser print dialog — choose "Save as PDF" for a clean, print-optimised version of your report |
-
-> Your data never leaves your device. There is no account, server storage, or tracking.
-
----
-
-## 📱 Responsive Design
-
-FinSight is fully responsive across all screen sizes:
-
-| Breakpoint | Layout behaviour |
-|------------|-----------------|
-| **Desktop** (>760px) | Two-column score + stats, 6-column forecast grid, 3-column debt cards |
-| **Tablet** (600–760px) | Stacked score ring + stats, 2-column expense inputs, 3-column forecast |
-| **Mobile** (≤600px) | Single-column layout throughout, horizontally scrollable step progress bar |
-| **Small mobile** (≤400px) | 2-column forecast grid, single-column history inputs |
-
----
-
-## 🛠️ Tech Stack
-
-### Backend
-| Technology | Purpose |
+| Option | What happens |
 |---|---|
-| **FastAPI** | REST API framework |
-| **Python 3.11** | Backend language |
-| **Pydantic** | Data validation |
-| **scikit-learn** | Linear regression for savings forecast |
-| **NumPy** | Numerical calculations |
-| **Uvicorn** | ASGI server |
+| Download JSON | Exports all your data, ratios, score, and forecast as a `.json` file |
+| Print / Save as PDF | Opens the browser print dialog — choose "Save as PDF" for a clean copy |
 
-### Frontend
-| Technology | Purpose |
-|---|---|
-| **Next.js 15** | React framework |
-| **TypeScript** | Type-safe JavaScript |
-| **Tailwind CSS** | Styling |
-| **SVG Charts** | Custom built, no external chart library |
-
-### Deployment
-| Service | Purpose |
-|---|---|
-| **Vercel** | Frontend hosting |
-| **Render** | Backend hosting |
-| **GitHub** | Version control |
+Your data never leaves your device. There's no account, no server storage, no tracking.
 
 ---
 
-## 📁 Project Structure
+## Tech stack
+
+| | |
+|---|---|
+| Backend | FastAPI, Python 3.11, scikit-learn, NumPy, Pydantic |
+| Frontend | Next.js 15, TypeScript, Tailwind CSS |
+| Charts | Custom SVG — no chart library |
+| Hosting | Vercel (frontend), Render (backend) |
+
+---
+
+## Project structure
 
 ```
-finsight-api/
+FinSight-API-Financial-Health-Analytics/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py              # FastAPI app + CORS config
-│   │   ├── models.py            # Pydantic request/response models
+│   │   ├── main.py              # FastAPI app + CORS
+│   │   ├── models.py            # Pydantic models
 │   │   ├── routes/
-│   │   │   ├── finances.py      # /finances endpoints
-│   │   │   └── users.py         # /users endpoints
+│   │   │   ├── finances.py      # Health, history, predict endpoints
+│   │   │   └── users.py         # User endpoints
 │   │   ├── services/
-│   │   │   └── analytics.py     # Health score formula + ML logic
+│   │   │   └── analytics.py     # Score formula + ML prediction
 │   │   └── utils/
-│   │       └── db.py            # In-memory database
+│   │       └── db.py            # In-memory store
 │   ├── requirements.txt
 │   └── runtime.txt
 │
 └── frontend/
     ├── app/
-    │   ├── page.tsx             # Main app — full dashboard UI
-    │   ├── layout.tsx           # Root layout
-    │   └── globals.css          # Global styles
+    │   ├── page.tsx             # Full dashboard UI
+    │   ├── layout.tsx
+    │   └── globals.css
     ├── utils/
     │   └── api.ts               # API fetch functions
-    ├── public/                  # Static assets (SVGs)
-    ├── .gitignore
-    ├── eslint.config.mjs
     └── package.json
 ```
 
 ---
 
-## 🚀 Running Locally
+## Running locally
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- npm or yarn
+**Prerequisites:** Python 3.11+, Node.js 18+
 
-### Backend Setup
+### Backend
 
 ```bash
-# Navigate to backend
 cd backend
-
-# Create virtual environment
 python -m venv venv
-
-# Activate it (Mac/Linux)
-source venv/bin/activate
-
-# Install dependencies
+source venv/bin/activate       # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
-# Start the server
 uvicorn app.main:app --reload
 ```
 
-Backend runs at: `http://localhost:8000`  
-API docs at: `http://localhost:8000/docs`
+Runs at `http://localhost:8000` — API docs at `http://localhost:8000/docs`
 
-### Frontend Setup
+### Frontend
 
 ```bash
-# Navigate to frontend
 cd frontend
-
-# Install dependencies
 npm install
-
-# Create environment file
 echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
-
-# Start the dev server
 npm run dev
 ```
 
-Frontend runs at: `http://localhost:3000`
+Runs at `http://localhost:3000`
 
 ---
 
-## 🔌 API Endpoints
+## API reference
 
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/` | Health check |
 | `POST` | `/users/signup` | Create a user |
 | `GET` | `/users/{user_id}` | Get user profile |
-| `POST` | `/finances/health` | Calculate financial health score |
-| `GET` | `/finances/history/{user_id}` | Get saved financial record |
-| `POST` | `/finances/predict-savings` | ML savings forecast |
+| `POST` | `/finances/health` | Calculate health score |
+| `GET` | `/finances/history/{user_id}` | Get saved record |
+| `POST` | `/finances/predict-savings` | 6-month ML forecast |
 
-### Example Request — Financial Health
+### Calculate health score
 
 ```bash
 curl -X POST "http://localhost:8000/finances/health?user_id=alex" \
@@ -182,12 +128,8 @@ curl -X POST "http://localhost:8000/finances/health?user_id=alex" \
   -d '{
     "income": 6500,
     "expenses": {
-      "rent": 1400,
-      "food": 450,
-      "utilities": 120,
-      "transport": 200,
-      "entertainment": 150,
-      "healthcare": 80
+      "rent": 1400, "food": 450, "utilities": 120,
+      "transport": 200, "entertainment": 150, "healthcare": 80
     },
     "debts": 4000,
     "savings": 18000,
@@ -195,95 +137,142 @@ curl -X POST "http://localhost:8000/finances/health?user_id=alex" \
   }'
 ```
 
-### Example Response
-
 ```json
 {
   "financial_health_score": 75.5,
   "savings_ratio": 2.77,
   "debt_ratio": 0.62,
   "expense_ratio": 0.37,
-  "recommendations": [],
-  "investments": {
-    "investment_score": 0,
-    "total_invested": 0,
-    "recommendations": ["Consider investing more to reach 20% of your income."]
-  }
+  "recommendations": []
 }
 ```
 
-### Example Request — Savings Prediction
+### Savings forecast
 
 ```bash
 curl -X POST "http://localhost:8000/finances/predict-savings?user_id=alex" \
   -H "Content-Type: application/json" \
-  -d '{
-    "monthly_savings": [900, 950, 1000, 1100, 1050, 1200]
-  }'
+  -d '{"monthly_savings": [900, 950, 1000, 1100, 1050, 1200]}'
 ```
 
 ---
 
-## 📊 How the Health Score Works
+## How the health score is calculated
 
 ```
 score = 50 + (savings_ratio - debt_ratio - expense_ratio) × 50
-score = clamped between 0 and 100
+score is clamped between 0 and 100
 ```
 
-| Score | Rating | Meaning |
-|---|---|---|
-| 70–100 | 🟢 Strong | Great financial habits |
-| 40–69 | 🟡 Fair | Some areas to improve |
-| 0–39 | 🔴 Needs Work | Significant changes needed |
+| Score | What it means |
+|---|---|
+| 70–100 | Strong — good habits across the board |
+| 40–69 | Fair — one or two areas need attention |
+| 0–39 | Needs work — significant changes recommended |
 
-**Recommendations are triggered when:**
-- Debt ratio > 40% of income
-- Savings ratio < 20% of income
-- Expense ratio > 60% of income
-
-> ⚠️ **Known ratio bug:** The API currently returns `savings_ratio` as total savings ÷ monthly income and `debt_ratio` as total debt ÷ monthly income, producing inflated values (e.g. 218% savings rate, 155% debt ratio). The correct formulas are: savings ratio = monthly savings ÷ monthly income, and debt ratio = total debt ÷ annual income. This affects the displayed health score but not the forecast or expense breakdown. Fix is in `analytics.py`.
+Recommendations appear automatically when:
+- Debt exceeds 40% of monthly income
+- Savings rate is below 20% of monthly income
+- Total expenses exceed 60% of monthly income
 
 ---
 
-## 🧪 Test Data
+## Test data
 
-**Healthy Finances (score ~75)**
-```
-Income: $6,500 | Rent: $1,400 | Food: $450 | Utilities: $120
-Transport: $200 | Entertainment: $150 | Healthcare: $80
-Debts: $4,000 | Savings: $18,000
-History: 900, 950, 1000, 1100, 1050, 1200
-```
+<details>
+<summary>Healthy finances — score ~75</summary>
 
-**Average (score ~42)**
-```
-Income: $4,500 | Rent: $1,300 | Food: $600 | Utilities: $180
-Transport: $350 | Entertainment: $300 | Healthcare: $100
-Debts: $12,000 | Savings: $3,500
-History: 300, 250, 400, 350, 420, 380
-```
+| | |
+|---|---|
+| Income | $6,500 |
+| Rent | $1,400 |
+| Food | $450 |
+| Utilities | $120 |
+| Transport | $200 |
+| Entertainment | $150 |
+| Healthcare | $80 |
+| Debts | $4,000 |
+| Savings | $18,000 |
+| History | 900, 950, 1000, 1100, 1050, 1200 |
 
-**Needs Attention (score ~10)**
-```
-Income: $3,200 | Rent: $1,200 | Food: $700 | Utilities: $250
-Transport: $400 | Entertainment: $350 | Healthcare: $150
-Debts: $28,000 | Savings: $800
-History: 100, 80, 150, 50, 120, 90
-```
+</details>
+
+<details>
+<summary>Average — score ~42</summary>
+
+| | |
+|---|---|
+| Income | $4,500 |
+| Rent | $1,300 |
+| Food | $600 |
+| Utilities | $180 |
+| Transport | $350 |
+| Entertainment | $300 |
+| Healthcare | $100 |
+| Debts | $12,000 |
+| Savings | $3,500 |
+| History | 300, 250, 400, 350, 420, 380 |
+
+</details>
+
+<details>
+<summary>Needs attention — score ~10</summary>
+
+| | |
+|---|---|
+| Income | $3,200 |
+| Rent | $1,200 |
+| Food | $700 |
+| Utilities | $250 |
+| Transport | $400 |
+| Entertainment | $350 |
+| Healthcare | $150 |
+| Debts | $28,000 |
+| Savings | $800 |
+| History | 100, 80, 150, 50, 120, 90 |
+
+</details>
 
 ---
 
-## 🚢 Deployment
+## Deploying your own copy
 
 ### Backend (Render)
-1. Connect GitHub repo to Render
-2. Root Directory: `backend`
-3. Build Command: `pip install -r requirements.txt`
-4. Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-5. Add environment variable: `FRONTEND_URL = https://your-app.vercel.app`
+
+1. Connect this repo on [render.com](https://render.com)
+2. Root directory: `backend`
+3. Build command: `pip install -r requirements.txt`
+4. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+5. Environment variable: `FRONTEND_URL` → your Vercel URL
 
 ### Frontend (Vercel)
-1. Connect GitHub repo to Vercel
-2. Root Directory: `frontend`
-3. Add environment variable: `NEXT_PUBLIC_API_URL = https://your-api.onrender.com`
+
+1. Import this repo on [vercel.com](https://vercel.com)
+2. Root directory: `frontend`
+3. Environment variable: `NEXT_PUBLIC_API_URL` → your Render URL
+
+**Tip:** Render's free tier sleeps after 15 minutes of inactivity. Set up a free monitor on [UptimeRobot](https://uptimerobot.com) pinging your Render URL every 5 minutes to keep it awake.
+
+---
+
+## Known limitations
+
+- **In-memory database** — data resets whenever the Render server restarts. PostgreSQL is planned for a future version.
+- **No authentication** — any `user_id` can be accessed by anyone. JWT auth is on the roadmap.
+- **Single record per user** — saving new data overwrites the previous entry.
+
+---
+
+## Roadmap
+
+- [ ] PostgreSQL for persistent storage
+- [ ] JWT authentication
+- [ ] Investment portfolio tracking
+- [ ] PDF report export
+- [ ] Historical records with trend analysis over time
+
+---
+
+## Author
+
+**Carina Desouza** — [github.com/carinadesouza](https://github.com/carinadesouza)
