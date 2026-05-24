@@ -139,10 +139,12 @@ curl -X POST "http://localhost:8000/finances/health?user_id=alex" \
 
 ```json
 {
-  "financial_health_score": 75.5,
-  "savings_ratio": 2.77,
-  "debt_ratio": 0.62,
-  "expense_ratio": 0.37,
+  "financial_health_score": 79.0,
+  "savings_ratio": 0.6308,
+  "debt_ratio": 0.0513,
+  "expense_ratio": 0.3692,
+  "monthly_savings": 4100.0,
+  "net_worth": 14000.0,
   "recommendations": []
 }
 ```
@@ -171,16 +173,18 @@ score is clamped between 0 and 100
 | 0–39 | Needs work — significant changes recommended |
 
 Recommendations appear automatically when:
-- Debt exceeds 40% of monthly income
-- Savings rate is below 20% of monthly income
-- Total expenses exceed 60% of monthly income
+- Total debt exceeds 40% of annual income
+- Monthly savings rate is below 20% of monthly income
+- Total monthly expenses exceed 60% of monthly income
 
 ---
 
 ## Test data
 
 <details>
-<summary>Healthy finances — score ~75</summary>
+Healthy finances — score ~79
+Average — score ~42
+Needs attention — score ~10
 
 | | |
 |---|---|
